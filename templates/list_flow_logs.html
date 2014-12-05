@@ -1,0 +1,53 @@
+{% extends "base_menu.html" %}
+{% load static %}
+{% load app_extras %}
+{% block header %}
+	<link href="{% static "extra_style.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block title %}Flow Logs{% endblock %}
+{% block extended_menu %}
+	<li>
+		<a href="{% url 'create-log' flow.id %}">Create Log</a>
+	</li>
+{% endblock %}
+{% block content %}
+	<h3>Flow Logs</h3>
+	<p>
+		Flow ID: {{ flow.id }}
+	</p>
+	{% if flow_logs_list %}
+		{% for log in flow_logs_list %}
+			<table class="grey_border" width="100%" cellpadding="2">
+				<tr>
+					<td class="grey_border" width="16%">
+						<b>{{ log.user }}</b> - {{ log.created }}
+						<br>
+						<img src="{{ log.user.userprofile.picture.url }}" alt="Picture of {{ log.user }}" />
+					</td>
+					<td class="grey_border" width="84%" class="left_align">
+						{{ log.content }}
+					</td>
+				</tr>
+			</table>
+		{% endfor %}
+		{% if is_paginated %}
+			<p>
+				{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">previous</a>{% endif %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -5 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -1 %}
+				{{ page_obj.number }}
+				{% page_link page_obj.number page_obj.paginator.num_pages 1 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 5 %}
+				{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">next</a>{% endif %}
+			</p>
+		{% endif %}
+	{% else %}
+		<p>No logs found.</p>
+	{% endif %}
+{% endblock %}

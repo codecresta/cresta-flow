@@ -1,0 +1,53 @@
+{% extends "base_menu.html" %}
+{% load static %}
+{% load app_extras %}
+{% block header %}
+	<link href="{% static "extra_style.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block title %}Flow Events{% endblock %}
+{% block content %}
+	<h3>Flow Events</h3>
+	<p>
+		Flow ID: {{ flow.id }}
+	</p>
+	{% if flow_events_list %}
+		<table class="grey_border" cellpadding="2">
+			<tr>
+				<th class="grey_border">ID</th>
+				<th class="grey_border">Flow</th>
+				<th class="grey_border">State</th>
+				<th class="grey_border">Created</th>
+				<th class="grey_border">User</th>
+			</tr>
+			{% for event in flow_events_list %}
+				<tr>
+					<td class="grey_border">{{ event.id }}</td>
+					<td class="grey_border">{{ event.flow }}</td>
+					<td class="grey_border">{{ event.state }}</td>
+					<td class="grey_border">{{ event.created|date:'d/m/Y, H:i' }}</td>
+					<td class="grey_border">{{ event.user }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		{% if is_paginated %}
+			<p>
+				{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">previous</a>{% endif %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -5 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -1 %}
+				{{ page_obj.number }}
+				{% page_link page_obj.number page_obj.paginator.num_pages 1 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 5 %}
+				{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">next</a>{% endif %}
+			</p>
+		{% endif %}
+	{% else %}
+		<p>No events found</p>
+	{% endif %}
+	<br>
+{% endblock %}

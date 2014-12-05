@@ -1,0 +1,11 @@
+{% extends "base_menu.html" %}
+{% block title %}View Flow{% endblock %}
+{% block content %}
+	<h3>View Flow</h3>
+	<p>ID: {{ flow.id }}</p>
+	<p>Reference: {{ flow.ref }}</p>
+	<p>State: {{ flow.state }}</p>
+	<p>Type: {{ flow.flow_type }}</p>
+	<p>Created: {{ flow.created }}</p>
+	<p>Modified: {{ flow.modified }}</p>
+{% endblock %}

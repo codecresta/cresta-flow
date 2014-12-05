@@ -1,0 +1,80 @@
+{% extends "base_menu.html" %}
+{% load static %}
+{% load app_extras %}
+{% block header %}
+	<link href="{% static "extra_style.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block title %}Flows{% endblock %}
+{% block content %}
+	<h3>Flows</h3>
+	{% if flow_list %}
+		<table class="grey_border" cellpadding="2">
+			<tr>
+				<th class="grey_border">ID</th>
+				<th class="grey_border">Reference</th>
+				<th class="grey_border">Type</th>
+				<th class="grey_border">State</th>
+				<th class="grey_border">Created</th>
+				<th class="grey_border">Modified</th>
+				<th class="grey_border"></th>
+				{% if can_update %}
+					<th class="grey_border"></th>
+				{% endif %}
+				<th class="grey_border"></th>
+				{% if can_revert %}
+					<th class="grey_border"></th>
+				{% endif %}
+				{% if can_delete %}
+					<th class="grey_border"></th>
+				{% endif %}
+				<th class="grey_border"></th>
+				<th class="grey_border"></th>
+				<th class="grey_border"></th>
+			</tr>
+			{% for flow in flow_list %}
+				<tr class="{% rowcolour flow.created %}">
+					<td class="grey_border">{{ flow.id }}</td>
+					<td class="grey_border">{{ flow.ref }}</td>
+					<td class="grey_border">{{ flow.flow_type }}</td>
+					<td class="grey_border">{{ flow.state }}</td>
+					<td class="grey_border">{{ flow.created|date:'d/m/Y, H:i' }}</td>
+					<td class="grey_border">{{ flow.modified|date:'d/m/Y, H:i' }}</td>
+					<td class="grey_border"><a href="{% url 'view-flow' flow.id %}">view</a></td>
+					{% if can_update %}
+						<td class="grey_border"><a href="{% url 'update-flow' flow.id flow.version %}">update</a></td>
+					{% endif %}
+					<td class="grey_border"><a href="{% url 'advance-flow' flow.id flow.version %}">advance</a></td>
+					{% if can_revert %}
+						<td class="grey_border"><a href="{% url 'revert-flow' flow.id flow.version %}">revert</a></td>
+					{% endif %}
+					{% if can_delete %}
+						<td class="grey_border"><a href="{% url 'delete-flow' flow.id %}">delete</a></td>
+					{% endif %}
+					<td class="grey_border"><a href="{% url 'list-flow-events' flow.id %}">events</a></td>
+					<td class="grey_border"><a href="{% url 'list-flow-logs' flow.id %}">logs</a></td>
+					<td class="grey_border"><a href="{% url 'create-log' flow.id %}">create log</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+		{% if is_paginated %}
+			<p>
+				{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">previous</a>{% endif %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -5 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages -1 %}
+				{{ page_obj.number }}
+				{% page_link page_obj.number page_obj.paginator.num_pages 1 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 2 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 3 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 4 %}
+				{% page_link page_obj.number page_obj.paginator.num_pages 5 %}
+				{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">next</a>{% endif %}
+			</p>
+		{% endif %}
+	{% else %}
+		<p>No flows found</p>
+	{% endif %}
+	<br>
+{% endblock %}

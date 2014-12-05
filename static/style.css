@@ -1,0 +1,93 @@
+#body-container
+{
+	margin: 0 auto;
+	width: 100%;
+	background: #fff;
+}
+#header
+{
+	width: 100%;
+	clear: both;
+	float: right;
+	background: #00c;
+	color: #fff;
+}
+#header a:link
+{
+	color: #fff;
+}
+#header a:visited
+{
+	color: #f88;
+}
+#header-left
+{
+	width: 86%;
+	clear: left;
+	float: left;
+	background: #00c;
+	padding: 1%;
+}
+#header-right
+{
+	width: 10%;
+	clear: right;
+	float: right;
+	background: #00c;
+	padding: 1%;
+}
+#menu
+{
+	font-family: "Lucida Grande", Arial;
+	float: left;
+	width: 100%;
+	background: #777;
+}
+#menu ul
+{
+	margin: 0;
+	padding: 0;
+}
+#menu ul li
+{
+	list-style-type: none;
+	display: inline;
+}
+#menu li a
+{
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-right: 1px solid #fff;
+}
+#menu li a:hover
+{
+	background: #83caff;
+}
+#content
+{
+	clear: left;
+	width: 98%;
+	padding: 8px 0;
+	margin: 0 1% 0 1%;
+}
+td.spaced
+{
+	padding: 8px;
+}
+p, h3, th, td
+{
+	font-family: Arial;
+}
+#footer
+{
+	font-family: Arial;
+	clear: left;
+	background: #00c;
+	color: #fff;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}

@@ -1,0 +1,16 @@
+{% extends "base_menu.html" %}
+{% block content %}
+	{% if version_msg %}
+		<h3>Failed to Save - record was updated by another browser.</h3>
+	{% else %}
+		<h3>Update Flow</h3>
+		<form id="update_form" method="post" action="{% url 'update-flow' flow_id version %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>
+				Ref: <input type="text" name="ref" value="{{ ref }}" size="24" />
+			</p>
+			<input type="submit" name="submit" value="OK" />
+			<input type="submit" name="cancel" value="Cancel" />
+		</form>
+	{% endif %}
+{% endblock %}

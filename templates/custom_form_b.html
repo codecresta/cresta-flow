@@ -1,0 +1,12 @@
+{% extends "custom_form.html" %}
+{% block title %}Custom Form B{% endblock %}
+{% block custom %}
+	<h3>Custom Form B</h3>
+	<form id="user_form" method="post" action="{% url 'advance-flow' flow_id version %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ event_form.as_p }}
+		{{ custom_form_b.as_p }}
+		<input type="submit" name="submit" value="OK" />
+		<input type="submit" name="cancel" value="Cancel" />
+	</form>
+{% endblock %}

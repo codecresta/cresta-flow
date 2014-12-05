@@ -1,0 +1,10 @@
+{% extends "base_menu.html" %}
+{% block title %}Create Flow{% endblock %}
+{% block content %}
+	<h3>Create Flow</h3>
+	<form action="{% url 'create-flow' type_desc %}" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input id="save_flow" type="submit" value="Save" />
+	</form>
+{% endblock %}

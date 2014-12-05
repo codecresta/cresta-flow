@@ -1,0 +1,19 @@
+{% extends "base_menu.html" %}
+{% block title %}Delete Flow{% endblock %}
+{% block content %}
+	{% if version_msg %}
+		<h3>Failed to Save - record was updated by another browser.</h3>
+	{% else %}
+		<h3>Revert Flow</h3>
+		<form method="post">
+			{% csrf_token %}
+			<p>
+				Are you sure you want to revert the flow with ID: {{ flow_id }} ?
+			</p>
+			<p>
+				<input type="submit" name="submit" value="OK" />
+				<input type="submit" name="cancel" value="Cancel" />
+			</p>
+		</form>
+	{% endif %}
+{% endblock %}

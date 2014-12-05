@@ -1,0 +1,19 @@
+{% extends "base_menu.html" %}
+{% load app_extras %}
+{% block title %}Login{% endblock %}
+{% block content %}
+	<h3>Registration</h3>
+	{% if registered %}
+		{% project_name %}: thank you for registering!
+		<a href="/">Return to the homepage.</a><br />
+	{% else %}
+		<form id="user_form" method="post" action="{% url 'register' %}"
+				enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ user_form.as_p }}
+			{{ profile_form.as_p }}
+			<input type="submit" name="submit" value="Register" />
+		</form>
+	{% endif %}
+	<br>
+{% endblock %}

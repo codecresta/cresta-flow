@@ -1,0 +1,19 @@
+{% extends "base_menu.html" %}
+{% block title %}Create Event{% endblock %}
+{% block content %}
+	<h3>Create Event</h3>
+	<form action="{% url 'create-event' flow_id state_id %}" method="POST">
+		{% csrf_token %}
+		{% for hidden in form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+		{% for field in form.visible_fields %}
+			<p>
+				{{ field.errors }}
+				{{ field.name }}
+				{{ field }}
+			</p>
+		{% endfor %}
+		<input id="save_log" type="submit" value="Save" />
+	</form>
+{% endblock %}

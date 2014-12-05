@@ -1,0 +1,10 @@
+{% extends "base_menu.html" %}
+{% load app_extras %}
+{% block title %}{% project_name %} home page{% endblock %}
+{% block content %}
+	{% if user.is_authenticated %}
+		<h3>Welcome {{ user.username }}</h3>
+	{% else %}
+		<h3>Welcome</h3>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load static %}
+{% load app_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link href='{% static "favicon.ico" %}' rel="icon" type="image/png" />
+	<link href="{% static "style.css" %}" rel="stylesheet" type="text/css">
+	<meta name="description" content="{% meta_description %}">
+	<meta name="keywords" content="{% meta_keywords %}">
+	{% block header %}{% endblock %}
+	<title>{% block title %}{% project_name %}{% endblock %}</title>
+</head>
+<body>
+	<div id="body-container">
+		<div id="header">
+			<div id="header-left">
+				<img src="{% static "logo.png" %}" alt="{% project_name %} logo">
+			</div>
+			<div id="header-right">
+				{% block header_right %}{% endblock %}
+			</div>
+		</div>
+		{% block menu %}{% endblock %}
+		<div id="content">
+			{% block content %}
+				<p>
+					{% project_name %}.
+				</p>
+			{% endblock %}
+		</div>
+		<div id="footer">
+			Copyright &copy; {% company_name %}, 2014
+		</div>
+	</div>
+</body>
+</html>

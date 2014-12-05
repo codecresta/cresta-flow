@@ -1,0 +1,24 @@
+.new_row
+{
+	background-color: #caff70;
+}
+.old_row
+{
+	background-color: #c6e2ff;
+}
+table.grey_border
+{
+    border-style: solid;
+    border-color: #ddd #777 #777 #ddd;
+	border-width: 2px;
+}
+td.grey_border, th.grey_border
+{
+    border-style: solid;
+    border-color: #777 #ddd #ddd #777;
+	border-width: 2px;
+}
+.left_align
+{
+	text-align: left;
+}

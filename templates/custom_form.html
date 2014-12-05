@@ -1,0 +1,10 @@
+{% extends "base_menu.html" %}
+{% block content %}
+	{% if version_msg %}
+		<h3>Failed to Save - record was updated by another browser.</h3>
+	{% else %}
+		{% block custom %}
+			<p>No custom form specified.</p>
+		{% endblock %}
+	{% endif %}
+{% endblock %}
