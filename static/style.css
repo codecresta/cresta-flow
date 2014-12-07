@@ -91,3 +91,11 @@ p, h3, th, td
 	padding: 20px;
 	height: 1%;
 }
+#footer a:link
+{
+	color: #fff;
+}
+#footer a:visited
+{
+	color: #f88;
+}
