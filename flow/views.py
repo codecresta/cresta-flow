@@ -14,11 +14,6 @@ from flow.forms import UserForm, UserProfileForm, CustomFormA, CustomFormB, Flow
 from flow import utils
 
 '''
-How to split up view.py
-http://stackoverflow.com/questions/1921771/django-split-views-py-in-several-files
-'''
-
-'''
 if you need custom logging:
 import logging
 
