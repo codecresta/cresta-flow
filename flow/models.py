@@ -1,3 +1,9 @@
+'''
+models.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
