@@ -33,3 +33,6 @@ Django==1.7.1
 Pillow==2.6.1
 psycopg2==2.5.4
 pytz==2014.10
+
+Code Cresta, 2014
+http://www.codecresta.com
