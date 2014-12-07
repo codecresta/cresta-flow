@@ -1,3 +1,9 @@
+'''
+utils.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 # class for managing workflow logic / structure
 class Workflow:
     state_lists = {} # stores a list of states for each group
