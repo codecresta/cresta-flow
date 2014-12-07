@@ -1,9 +1,14 @@
+'''
+app_extras.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 from django.conf import settings
 from datetime import datetime
 from django import template
 from django.utils import timezone
 from django.utils.timezone import localtime
-# import math
 
 register = template.Library()
 
