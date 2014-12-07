@@ -1,3 +1,9 @@
+'''
+urls.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 from django.views.generic import TemplateView, RedirectView
 from django.conf.urls import patterns, include, url
 from django.conf import settings
