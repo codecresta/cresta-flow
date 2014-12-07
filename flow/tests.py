@@ -1,3 +1,9 @@
+'''
+tests.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 from flow.models import Type, State, Flow, Event, Log
