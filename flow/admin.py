@@ -1,3 +1,9 @@
+'''
+admin.py
+Cresta Flow System
+http://www.codecresta.com
+'''
+
 from django.contrib import admin
 from flow.models import Type, State, Flow, Event, Log, UserProfile
 
