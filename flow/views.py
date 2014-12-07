@@ -98,8 +98,7 @@ def user_login(request):
     else:
         return render_to_response('login.html', {}, context)
 
-# login required decorator
-@login_required
+# logout
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
