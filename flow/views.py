@@ -16,7 +16,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse_lazy
 from flow.models import Type, Flow, Event, Log
-from flow.forms import UserForm, UserProfileForm, CustomFormA, CustomFormB, FlowForm, EventForm
+from flow.forms import UserForm, UserProfileForm, FlowForm, EventForm, get_cus_forms
 from flow import utils
 
 '''
@@ -257,12 +257,13 @@ def custom_advance(request, flow_id, version, context, flow, name, CustomForm):
 def advance_flow(request, flow_id, version):
     context = RequestContext(request)
     flow = get_object_or_404(Flow, id=flow_id)
-    if flow.state.description == 'state 1':
-        return custom_advance(request, flow_id, version, context, flow,
-            'custom_form_a', CustomFormA)
-    else:
-        return custom_advance(request, flow_id, version, context, flow,
-            'custom_form_b', CustomFormB)
+    wf = utils.Workflow()
+    wf.init()
+    get_cus_forms(wf)
+    for i in range(len(wf.cus_states)):
+        if flow.state.description == wf.cus_states[i]:
+            return custom_advance(request, flow_id, version, context, flow,
+                wf.cus_names[i], wf.cus_forms[i])
 
 # fbv for reverting a flow
 @user_passes_test(is_superuser, login_url='/login/')
@@ -302,9 +303,7 @@ class ListFlowEvents(ListView):
     paginate_by = 25
     def get_context_data(self, **kwargs):
         context = super(ListFlowEvents, self).get_context_data(**kwargs)
-        context.update({
-            'flow': get_object_or_404(Flow, id=self.kwargs['flow_id'])
-        })
+        context.update({'flow': get_object_or_404(Flow, id=self.kwargs['flow_id'])})
         return context
     def get_queryset(self, **kwargs):
         queryset = Event.objects.order_by('created')
@@ -318,9 +317,7 @@ class ListFlowLogs(ListView):
     paginate_by = 4
     def get_context_data(self, **kwargs):
         context = super(ListFlowLogs, self).get_context_data(**kwargs)
-        context.update({
-            'flow': get_object_or_404(Flow, id=self.kwargs['flow_id'])
-        })
+        context.update({'flow': get_object_or_404(Flow, id=self.kwargs['flow_id'])})
         return context
     def get_queryset(self, **kwargs):
         queryset = Log.objects.order_by('created')
