@@ -10,6 +10,9 @@ class Workflow:
     state_trans = {} # stores a list of transition states for each state
     init_states = [] # stores a list of initial states
     term_states = [] # stores a list of terminal states
+    cus_states = [] # custom form state description
+    cus_names = [] # custom form html name
+    cus_forms = [] # custom form
     # append a user group
     def app_group(self, group):
         self.state_lists[group] = []
@@ -44,6 +47,11 @@ class Workflow:
     # get all terminal states
     def get_term_states(self):
         return self.term_states
+    # append a custom form
+    def app_cus_form(self, state, name, form):
+        self.cus_states.append(state)
+        self.cus_names.append(name)
+        self.cus_forms.append(form)
     # test / demo workflow system
     def init(self):
         self.app_group('group 1')
