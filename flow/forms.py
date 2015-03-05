@@ -58,3 +58,9 @@ class EventForm(forms.ModelForm):
         state_desc = flow.state.description
         super(EventForm, self).__init__(*args, **kwargs)
         self.fields['state'].queryset = State.objects.filter(description__in=self.wf.get_trans(state_desc))
+
+def get_cus_forms(wf):
+    wf.app_cus_form('state 1', 'custom_form_a', CustomFormA)
+    wf.app_cus_form('state 2', 'custom_form_b', CustomFormB)
+
+    
